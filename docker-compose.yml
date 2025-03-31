@@ -1,3 +1,7 @@
+networks:
+  mcp-networks:
+    driver: bridge
+
 services:
   redis:
     image: "redis:latest"
@@ -6,7 +10,7 @@ services:
     ports:
       - "6379:6379"
   db:
-    container_name: financial-portal-database
+    container_name: mcp-database
     image: postgres:13
     volumes:
       - db_data:/var/lib/postgresql/data/
@@ -15,7 +19,7 @@ services:
     ports:
       - 5432:5432
     networks:
-      - financial-portal_network
+      - mcp-networks
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -32,6 +36,8 @@ services:
       - "8001:8000"
     depends_on:
       - redis
+    networks:
+      - mcp-networks
 
   mcp-stock:
     build:
@@ -56,3 +62,6 @@ services:
       - "8003:8000"
     depends_on:
       - redis
+
+volumes:
+  db_data:
