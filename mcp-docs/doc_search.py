@@ -1,4 +1,4 @@
-from mcp import MCPServer, tool
+from server.base import MCPServer, tool
 import PyPDF2
 import redis
 import json

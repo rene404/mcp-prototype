@@ -4,6 +4,7 @@ FROM python:3.12
 # Set the working directory
 WORKDIR /app
 
+
 # Copy all project files
 # Copy the requirements.txt from the parent directory on your host
 COPY requirements.txt .
@@ -12,10 +13,12 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Then copy the rest of your application code (optional)
-COPY mcp-stocks/ .
+COPY mcp-stock/ .
 
 # Expose the MCP default port
 EXPOSE 8000
+
+ENV PYTHONPATH=/app
 
 # Run MCP server
 CMD ["python", "live_stock.py"]

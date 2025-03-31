@@ -1,5 +1,5 @@
 import os
-from mcp import MCPServer
+from server.base import MCPServer, tool
 import redis
 
 # Redis instance (used in all servers)

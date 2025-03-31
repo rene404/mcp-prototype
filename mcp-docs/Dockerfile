@@ -4,6 +4,7 @@ FROM python:3.12
 # Set the working directory
 WORKDIR /app
 
+
 # Copy the requirements.txt from the parent directory on your host
 COPY requirements.txt .
 
@@ -15,6 +16,8 @@ COPY mcp-docs/ .
 
 # Expose the MCP default port
 EXPOSE 8000
+
+ENV PYTHONPATH=/app
 
 # Run MCP server
 CMD ["python", "doc_search.py"]

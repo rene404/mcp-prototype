@@ -1,4 +1,4 @@
-from mcp import MCPServer, tool
+from server.base import MCPServer, tool
 import psycopg2
 import redis
 import json

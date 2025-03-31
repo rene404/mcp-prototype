@@ -1,4 +1,4 @@
-from mcp import MCPServer, tool
+from server.base import MCPServer, tool
 import requests
 import redis
 import json
