@@ -5,13 +5,13 @@ FROM python:3.12
 WORKDIR /app
 
 # Copy the requirements.txt from the parent directory on your host
-COPY ../requirements.txt ./requirements.txt
+COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Then copy the rest of your application code (optional)
-COPY . .
+COPY mcp-docs/ .
 
 # Expose the MCP default port
 EXPOSE 8000
