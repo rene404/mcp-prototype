@@ -1,0 +1,37 @@
+services:
+  redis:
+    image: "redis:latest"
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  mcp-financial:
+    build: .
+    container_name: mcp_financial
+    environment:
+      - MCP_SERVER_NAME=FinancialHistoryServer
+    ports:
+      - "8001:8000"
+    depends_on:
+      - redis
+
+  mcp-stock:
+    build: .
+    container_name: mcp_stock
+    environment:
+      - MCP_SERVER_NAME=LiveStockServer
+    ports:
+      - "8002:8000"
+    depends_on:
+      - redis
+
+  mcp-docs:
+    build: .
+    container_name: mcp_docs
+    environment:
+      - MCP_SERVER_NAME=DocumentSearchServer
+    ports:
+      - "8003:8000"
+    depends_on:
+      - redis
