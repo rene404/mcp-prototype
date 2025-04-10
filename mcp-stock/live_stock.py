@@ -1,4 +1,5 @@
-from server.base import MCPServer, tool
+from mcp import tool
+from mcp.server.fastmcp import FastMCP
 import requests
 import redis
 import json
@@ -7,7 +8,7 @@ redis_client = redis.Redis(host='localhost', port=6379, db=0)
 STOCK_API_URL = "https://financial-api.com/stocks/"
 CACHE_EXPIRATION = 60  # 1 minute
 
-class LiveStockServer(MCPServer):
+class LiveStockServer(FastMCP):
 
     @tool
     def get_stock_price(self, symbol: str):
